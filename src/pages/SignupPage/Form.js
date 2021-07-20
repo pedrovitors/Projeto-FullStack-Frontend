@@ -3,14 +3,18 @@ import {Controller, useForm} from "react-hook-form"
 import TextField from "@material-ui/core/TextField"
 import {Button, InputAdornment} from "@material-ui/core"
 import AccountCircle from "@material-ui/icons/AccountCircle"
+import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from "@material-ui/icons/Lock"
 import {ButtonContainer} from "./styles"
+import {signup} from "../../services/user"
+import {useHistory} from "react-router-dom"
 
 export const Form = () => {
     const {handleSubmit, control} = useForm()
+    const history = useHistory()
 
     const onSubmit = (data) => {
-        console.log(data)
+        signup(data, history)
     }
 
     return (
@@ -83,7 +87,7 @@ export const Form = () => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <AccountCircle/>
+                                    <EmailIcon/>
                                 </InputAdornment>
                             ),
                         }}
@@ -94,7 +98,7 @@ export const Form = () => {
                 name="password"
                 control={control}
                 defaultValue=""
-                rules={{ minLength: 6}}
+                rules={{minLength: 6}}
                 render={({field}) =>
                     <TextField
                         {...field}
