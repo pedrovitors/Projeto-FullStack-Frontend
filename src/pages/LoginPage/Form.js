@@ -5,12 +5,15 @@ import AccountCircle from "@material-ui/icons/AccountCircle"
 import LockIcon from '@material-ui/icons/Lock';
 import {ButtonContainer} from "./styles"
 import {Controller, useForm} from "react-hook-form"
+import {login} from "../../services/user";
+import {useHistory} from "react-router-dom";
 
 const Form = () => {
     const {handleSubmit, control} = useForm()
+    const history = useHistory()
 
     const onSubmit = (data) => {
-        console.log(data)
+        login(data, history)
     }
 
     return (
